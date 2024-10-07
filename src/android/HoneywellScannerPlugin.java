@@ -1,7 +1,6 @@
 package com.icsfl.rfsmart.honeywell;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
@@ -19,7 +18,9 @@ import com.honeywell.aidc.BarcodeReadEvent;
 import com.honeywell.aidc.BarcodeReader;
 import com.honeywell.aidc.ScannerUnavailableException;
 import com.honeywell.aidc.ScannerNotClaimedException;
-import com.honeywell.aidc.UnsupportedPropertyException;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class HoneywellScannerPlugin extends CordovaPlugin implements BarcodeReader.BarcodeListener {
     private static final String TAG = "HoneywellScanner";
