@@ -19,6 +19,7 @@ import com.honeywell.aidc.BarcodeReadEvent;
 import com.honeywell.aidc.BarcodeReader;
 import com.honeywell.aidc.ScannerUnavailableException;
 import com.honeywell.aidc.ScannerNotClaimedException;
+import com.honeywell.aidc.UnsupportedPropertyException;
 
 public class HoneywellScannerPlugin extends CordovaPlugin implements BarcodeReader.BarcodeListener {
     private static final String TAG = "HoneywellScanner";
@@ -40,8 +41,26 @@ public class HoneywellScannerPlugin extends CordovaPlugin implements BarcodeRead
                 if (barcodeReader != null) {
                     barcodeReader.addBarcodeListener(HoneywellScannerPlugin.this);
                     try {
+                        properties.put(BarcodeReader.PROPERTY_CODE_128_ENABLED, true);
+                        properties.put(BarcodeReader.PROPERTY_GS1_128_ENABLED, true);
+                        properties.put(BarcodeReader.PROPERTY_QR_CODE_ENABLED, true);
+                        properties.put(BarcodeReader.PROPERTY_CODE_39_ENABLED, false);
+                        properties.put(BarcodeReader.PROPERTY_CODE_DOTCODE_ENABLED, true);
+                        properties.put(BarcodeReader.PROPERTY_DATAMATRIX_ENABLED, true);
+                        properties.put(BarcodeReader.PROPERTY_UPC_A_ENABLE, false);
+                        properties.put(BarcodeReader.PROPERTY_EAN_13_ENABLED, false);
+                        properties.put(BarcodeReader.PROPERTY_AZTEC_ENABLED, false);
+                        properties.put(BarcodeReader.PROPERTY_CODABAR_ENABLED, false);
+                        properties.put(BarcodeReader.PROPERTY_INTERLEAVED_25_ENABLED, true);
+                        properties.put(BarcodeReader.PROPERTY_PDF_417_ENABLED, false);
+                        properties.put(BarcodeReader.PROPERTY_DATA_PROCESSOR_LAUNCH_BROWSER, false);
+                        properties.put(BarcodeReader.PROPERTY_CENTER_DECODE, true);
+                        properties.put(BarcodeReader.PROPERTY_TRIGGER_SCAN_MODE, BarcodeReader.TRIGGER_SCAN_MODE_CONTINUOUS);
+                        barcodeReader.setProperties(properties);
                         barcodeReader.claim();
                     } catch (ScannerUnavailableException e) {
+                        e.printStackTrace();
+                    } catch (UnsupportedPropertyException e) {
                         e.printStackTrace();
                     }
                 }
