@@ -28,10 +28,10 @@ var honeywell = {
     // DEPRECATION WARNING: This will be removed in the next major release, use nativeRelease
     return execute(null, null, 'HoneywellScannerPlugin', 'claim', []);
   },
-  nativeClaim: function () {
+  setTriggerScanModeToOneShot: function () {
     return execute(null, null, 'HoneywellScannerPlugin', 'setTriggerScanModeToOneShot', []);
   },
-  nativeClaim: function () {
+  setTriggerScanModeToContinuous: function () {
     return execute(null, null, 'HoneywellScannerPlugin', 'setTriggerScanModeToContinuous', []);
   },
 };
