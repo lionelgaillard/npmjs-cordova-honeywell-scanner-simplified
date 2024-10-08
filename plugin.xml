@@ -22,7 +22,8 @@
         <config-file target="AndroidManifest.xml" parent="/*">
             <uses-permission android:name="com.honeywell.decode.permission.DECODE" />
         </config-file>
-        <source-file src="src/android/libs/DataCollection.jar" target-dir="libs" />
+        <framework src="src/android/cordova-honeywell-scanner-simplified.gradle" custom="true" type="gradleReference"/>
+        <lib-file src="src/android/libs/DataCollection.aar" />
         <source-file src="src/android/HoneywellScannerPlugin.java" target-dir="src/com/icsfl/rfsmart/honeywell" />
     </platform>
 </plugin>
