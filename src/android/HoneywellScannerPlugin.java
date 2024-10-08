@@ -57,7 +57,7 @@ public class HoneywellScannerPlugin extends CordovaPlugin implements BarcodeRead
                         properties.put(BarcodeReader.PROPERTY_PDF_417_ENABLED, false);
                         properties.put(BarcodeReader.PROPERTY_DATA_PROCESSOR_LAUNCH_BROWSER, false);
                         properties.put(BarcodeReader.PROPERTY_CENTER_DECODE, true);
-                        properties.put(BarcodeReader.PROPERTY_TRIGGER_SCAN_MODE, BarcodeReader.TRIGGER_SCAN_MODE_CONTINUOUS);
+                        properties.put(BarcodeReader.PROPERTY_TRIGGER_SCAN_MODE, BarcodeReader.TRIGGER_SCAN_MODE_ONESHOT);
                         barcodeReader.setProperties(properties);
                         barcodeReader.claim();
                     } catch (ScannerUnavailableException e) {
@@ -143,10 +143,26 @@ public class HoneywellScannerPlugin extends CordovaPlugin implements BarcodeRead
                     NotifyError("ScannerNotClaimedException2");
                 } catch (ScannerUnavailableException e) {
                     e.printStackTrace();
-                     NotifyError("ScannerUnavailableException2");
+                    NotifyError("ScannerUnavailableException2");
                 }
             }
-         }
+        } else if (action.equals("setTriggerScanModeToOneShot")) {
+            if (barcodeReader != null) {
+                try {
+                    barcodeReader.setProperty(BarcodeReader.PROPERTY_TRIGGER_SCAN_MODE, BarcodeReader.TRIGGER_SCAN_MODE_ONESHOT);
+                } catch (UnsupportedPropertyException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else if (action.equals("setTriggerScanModeToContinuous")) {
+            if (barcodeReader != null) {
+                try {
+                    barcodeReader.setProperty(BarcodeReader.PROPERTY_TRIGGER_SCAN_MODE, BarcodeReader.TRIGGER_SCAN_MODE_CONTINUOUS);
+                } catch (UnsupportedPropertyException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
         return true;
     }
 
