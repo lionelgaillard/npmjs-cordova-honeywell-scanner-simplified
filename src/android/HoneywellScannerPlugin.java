@@ -18,6 +18,7 @@ import com.honeywell.aidc.BarcodeReadEvent;
 import com.honeywell.aidc.BarcodeReader;
 import com.honeywell.aidc.ScannerUnavailableException;
 import com.honeywell.aidc.ScannerNotClaimedException;
+import com.honeywell.aidc.UnsupportedPropertyException;
 
 import java.util.HashMap;
 import java.util.Map;
